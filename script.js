@@ -1,6 +1,6 @@
 // ===== Config =====
 const EMAIL = "kumarabhijit2197@gmail.com";
-const GITHUB_URL = ""; // e.g. "https://github.com/your-username" — unhides all GitHub links
+const GITHUB_URL = "https://github.com/Abhijitkumar2197"; // unhides all GitHub links
 
 // ===== Rotating word in the hero =====
 const words = ["reliable", "scalable", "secure", "intelligent"];
