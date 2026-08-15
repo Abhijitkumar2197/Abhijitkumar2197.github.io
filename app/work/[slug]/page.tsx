@@ -48,8 +48,14 @@ export default async function CaseStudyPage({ params }: Params) {
     "@type": "Article",
     headline: project.title,
     description: project.description,
-    author: { "@type": "Person", name: site.name, url: site.url },
-    publisher: { "@type": "Person", name: site.name },
+    // datePublished and image are required for rich results; without them the
+    // markup is decorative. @id ties every article to ONE Person entity
+    // instead of creating five loosely-related author blobs.
+    datePublished: project.datePublished,
+    dateModified: project.datePublished,
+    image: [`${site.url}/og.png`],
+    author: { "@id": `${site.url}/#person` },
+    publisher: { "@id": `${site.url}/#person` },
     mainEntityOfPage: `${site.url}/work/${project.slug}/`,
     about: project.stack,
   };
@@ -61,7 +67,7 @@ export default async function CaseStudyPage({ params }: Params) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
       />
 
-      <article className="mx-auto max-w-3xl px-6 pt-14 pb-8 sm:pt-20">
+      <article className="mx-auto max-w-[46rem] px-6 pt-14 pb-8 sm:pt-20">
         <p>
           <Link
             href="/#work"
@@ -119,7 +125,7 @@ export default async function CaseStudyPage({ params }: Params) {
               </h2>
 
               {section.body && (
-                <div className="mt-4 space-y-4">
+                <div className="mt-4 max-w-[68ch] space-y-4">
                   {section.body.map((para) => (
                     <p key={para.slice(0, 24)} className="text-ash">
                       {para}
@@ -175,30 +181,61 @@ export default async function CaseStudyPage({ params }: Params) {
           </section>
         )}
 
-        {/* Stack */}
-        <section className="mt-14 border-t border-rule/70 pt-8">
-          <h2 className="font-mono text-2xs uppercase tracking-[0.2em] text-ash">
+        {/* Stack — same heading treatment as every other h2 on the page. */}
+        <section className="mt-14 border-t border-rule pt-8">
+          <h2 className="text-xl font-semibold tracking-tight text-bone">
             Stack
           </h2>
-          <p className="mt-4 text-ash">{project.stack.join(" · ")}</p>
+          <p className="mt-4 flex flex-wrap gap-2">
+            {project.stack.map((tech) => (
+              <span
+                key={tech}
+                className="chip rounded-full px-3 py-1 text-xs text-ash"
+              >
+                {tech}
+              </span>
+            ))}
+          </p>
+        </section>
+
+        {/* The highest-intent reader on the site just finished 700 words.
+            Give them an ask, not only another article. */}
+        <section className="card mt-14 rounded-2xl px-7 py-9">
+          <h2 className="max-w-[26ch] text-xl font-semibold tracking-tight">
+            Want the parts I can&apos;t put on a public page?
+          </h2>
+          <p className="mt-3 max-w-[56ch] text-sm text-ash">
+            Happy to walk through the data model, the trade-offs, and what I
+            would do differently. Open to Salesforce roles, 30-day notice.
+          </p>
+          <div className="mt-6 flex flex-wrap gap-3">
+            <a
+              href={`mailto:${site.email}?subject=${encodeURIComponent(
+                `Re: ${project.title}`,
+              )}`}
+              className="btn-primary inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold"
+            >
+              Email me about this project
+            </a>
+            <a
+              href={site.resume}
+              className="btn-ghost inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold text-bone"
+            >
+              Résumé (PDF)
+            </a>
+          </div>
         </section>
 
         {/* Next */}
-        <nav
-          aria-label="More work"
-          className="mt-14 border-t border-rule/70 pt-8"
-        >
+        <nav aria-label="More work" className="mt-12 border-t border-rule pt-8">
           <p className="font-mono text-2xs uppercase tracking-[0.2em] text-ash">
             Next case study
           </p>
           <Link
             href={`/work/${next.slug}/`}
-            className="group mt-3 block text-xl font-semibold tracking-tight text-bone hover:text-brass"
+            className="sweep mt-3 inline-block text-xl font-semibold tracking-tight text-bone hover:text-brass"
           >
-            {next.title}
-            <span className="ml-2 font-mono text-sm text-ash group-hover:text-brass">
-              →
-            </span>
+            {next.title} →
           </Link>
         </nav>
       </article>

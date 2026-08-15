@@ -4,13 +4,22 @@
  */
 
 export type Proof = {
+  /** Rendered large in mono. Must be a real magnitude, never a filler numeral. */
   value: string;
-  unit?: string;
+  /** Optional count-up target for the numeric part. */
+  countTo?: number;
+  countPrefix?: string;
+  countSuffix?: string;
   text: string;
   href?: string;
 };
 
-/** Four hard facts, directly under the hero. */
+/**
+ * Four hard facts, directly under the hero.
+ * Rule: the numeral must carry information on its own. "1" and "2x" did not —
+ * and "2x" sat next to a single hackathon win, which overstated the record
+ * against the resume linked from the same page.
+ */
 export const proof: Proof[] = [
   {
     value: "7th",
@@ -19,17 +28,20 @@ export const proof: Proof[] = [
   },
   {
     value: "~50%",
-    text: "less lead noise, via a custom call-tracking-to-Salesforce lead integration",
+    countTo: 50,
+    countPrefix: "~",
+    countSuffix: "%",
+    text: "of inbound call-tracking leads were noise before I filtered them — CallRail-to-Salesforce integration, with reps notified in real time",
     href: "/work/patient-financial-estimates/",
   },
   {
-    value: "1",
-    text: "personal AI side project selected by leadership for productisation into the company's flagship product",
-    href: "/work/prior-authorisation-automation/",
+    value: "Shipped",
+    text: "a prior-authorization completeness engine on my own time — selected by leadership for the firm's flagship product",
+    href: "/work/prior-authorization-automation/",
   },
   {
-    value: "2×",
-    text: "Winner, internal AI Agent Hackathon (2026) · Rank 1, BIT Mesra CodeBash (2023)",
+    value: "2026",
+    text: "Winner, Mirketa internal AI Agent Hackathon — an agent build competition",
   },
 ];
 

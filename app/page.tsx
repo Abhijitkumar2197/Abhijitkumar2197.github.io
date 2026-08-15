@@ -13,9 +13,11 @@ export const metadata = {
 const personSchema = {
   "@context": "https://schema.org",
   "@type": "Person",
+  "@id": `${site.url}/#person`,
   name: site.name,
   jobTitle: "Salesforce Developer",
   url: site.url,
+  image: `${site.url}/abhijit-kumar.jpg`,
   email: `mailto:${site.email}`,
   address: {
     "@type": "PostalAddress",
@@ -36,11 +38,30 @@ const personSchema = {
     "Experience Cloud",
     "Health Cloud",
     "REST API integration",
+    "Prior authorization",
+    "Revenue cycle management",
     "LLM",
     "RAG",
   ],
   sameAs: [site.linkedin, site.github],
 };
+
+const ArrowUpRight = ({ className = "" }: { className?: string }) => (
+  <svg
+    width="15"
+    height="15"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    className={className}
+    aria-hidden="true"
+  >
+    <path d="M7 17L17 7M9 7h8v8" />
+  </svg>
+);
 
 export default function HomePage() {
   return (
@@ -50,94 +71,111 @@ export default function HomePage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
       />
 
-      {/* ---------------- Hero ---------------- */}
+      {/* ------------------------------- Hero ------------------------------ */}
       <section className="mx-auto max-w-5xl px-6 pt-16 pb-14 sm:pt-24 sm:pb-20">
-        <p className="font-mono text-2xs uppercase tracking-[0.2em] text-brass">
-          {site.name}
+        <p className="rise rise-1 flex items-center gap-2.5 font-mono text-xs text-ash">
+          <span className="inline-block h-1.5 w-1.5 rounded-full bg-emerald-400" />
+          Open to Salesforce roles · 30-day notice
         </p>
 
-        <h1 className="mt-5 max-w-3xl text-3xl font-semibold leading-[1.15] tracking-tight sm:text-4xl">
-          Salesforce developer building and owning production systems for global
-          enterprise orgs — Apex, LWC, integrations, and AI automation on top.
+        {/* His name is the brand: it leads, at size. Previously it rendered at
+            12px while a filler numeral rendered at 36px. */}
+        <h1 className="rise rise-2 mt-6 text-4xl font-bold leading-[1.05] tracking-[-0.03em] sm:text-5xl">
+          Abhijit Kumar
         </h1>
 
-        <p className="mt-6 max-w-2xl text-ash">{site.context}</p>
+        <p className="rise rise-3 mt-5 max-w-[34ch] text-xl leading-snug font-medium text-bone sm:max-w-[46ch] sm:text-2xl">
+          Salesforce developer specializing in{" "}
+          <span className="text-brass">US healthcare on Health Cloud</span> —
+          eligibility, patient cost estimates and prior authorization, in live
+          production orgs.
+        </p>
 
-        <div className="mt-9 flex flex-wrap items-center gap-3">
+        <p className="rise rise-4 mt-5 max-w-[62ch] text-ash">
+          Two years at {site.employer.name}, a Salesforce consulting and ISV
+          firm in Noida. I build with Apex, LWC, Flow and REST integrations,
+          own the releases that put them live, and build AI agents into the
+          same CRM workflows.
+        </p>
+
+        <div className="rise rise-5 mt-9 flex flex-wrap items-center gap-3">
+          <a
+            href={`mailto:${site.email}`}
+            className="btn-primary inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold"
+          >
+            Get in touch
+            <ArrowUpRight />
+          </a>
           <Link
             href="#work"
-            className="rounded-sm bg-brass px-5 py-2.5 text-sm font-semibold text-ink hover:bg-bone"
+            className="btn-ghost inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold text-bone"
           >
-            View work
+            See the work
           </Link>
           <a
             href={site.resume}
-            download
-            className="rounded-sm border border-rule px-5 py-2.5 text-sm font-semibold text-bone hover:border-brass hover:text-brass"
+            className="btn-ghost inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold text-bone"
           >
-            Download résumé (PDF)
+            Résumé (PDF)
           </a>
         </div>
 
-        <p className="mt-8 flex flex-wrap gap-x-6 gap-y-2 text-sm">
-          <a
-            href={site.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-ash underline-offset-4 hover:text-bone hover:underline"
-          >
-            GitHub
+        <p className="rise rise-5 mt-8 flex flex-wrap gap-x-6 gap-y-2 text-sm text-ash">
+          <a href={`mailto:${site.email}`} className="sweep hover:text-bone">
+            {site.email}
           </a>
           <a
             href={site.linkedin}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-ash underline-offset-4 hover:text-bone hover:underline"
+            className="sweep hover:text-bone"
           >
             LinkedIn
           </a>
-          <a
-            href={`mailto:${site.email}`}
-            className="text-ash underline-offset-4 hover:text-bone hover:underline"
-          >
-            {site.email}
-          </a>
+          <span>Noida, India · open to relocation and remote</span>
         </p>
       </section>
 
-      {/* ---------------- Proof strip ----------------
-          Signature element: the numeral is typeset as data (mono, brass,
-          oversized) against a quiet sans description. */}
+      {/* ---------------------------- Proof strip -------------------------- */}
       <section
         aria-label="Selected results"
-        className="border-y border-rule/70 bg-slate/40"
+        className="border-y border-rule bg-slate/60"
       >
-        <div className="mx-auto max-w-5xl px-6 py-10">
-          <ul className="grid gap-x-10 gap-y-8 sm:grid-cols-2">
+        <div className="mx-auto max-w-5xl px-6 py-11">
+          <ul className="grid gap-x-12 gap-y-9 sm:grid-cols-2">
             {proof.map((p) => {
-              const inner = (
-                <>
-                  <span className="tnum shrink-0 font-mono text-2xl font-medium leading-none text-brass sm:text-3xl">
-                    {p.value}
-                  </span>
-                  <span className="text-sm leading-relaxed text-ash group-hover:text-bone">
-                    {p.text}
-                  </span>
-                </>
+              const numeral = (
+                <span
+                  className="tnum block font-mono text-3xl leading-none font-medium text-brass"
+                  {...(p.countTo !== undefined
+                    ? {
+                        "data-count-to": String(p.countTo),
+                        "data-count-prefix": p.countPrefix ?? "",
+                        "data-count-suffix": p.countSuffix ?? "",
+                      }
+                    : {})}
+                >
+                  {p.value}
+                </span>
               );
 
               return (
-                <li key={p.text}>
-                  {p.href ? (
-                    <Link
-                      href={p.href}
-                      className="group flex items-baseline gap-4 underline-offset-4 hover:underline decoration-rule"
-                    >
-                      {inner}
-                    </Link>
-                  ) : (
-                    <div className="flex items-baseline gap-4">{inner}</div>
-                  )}
+                <li key={p.text} className="reveal">
+                  {numeral}
+                  <p className="mt-3 max-w-[46ch] text-sm leading-relaxed text-ash">
+                    {p.text}
+                    {p.href && (
+                      <>
+                        {" "}
+                        <Link
+                          href={p.href}
+                          className="sweep font-medium whitespace-nowrap text-bone"
+                        >
+                          Read the case study
+                        </Link>
+                      </>
+                    )}
+                  </p>
                 </li>
               );
             })}
@@ -145,123 +183,129 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ---------------- Selected work ---------------- */}
-      <Reveal as="section" className="mx-auto max-w-5xl px-6 pt-20" >
-        <div id="work" className="scroll-mt-8">
-          <h2 className="font-mono text-2xs uppercase tracking-[0.2em] text-ash">
-            Selected work
-          </h2>
+      {/* --------------------------- Selected work ------------------------- */}
+      <Reveal className="mx-auto max-w-5xl px-6 pt-20">
+        <div id="work" className="scroll-mt-24">
+          <h2 className="text-2xl font-bold tracking-tight">Selected work</h2>
+          <p className="mt-2 max-w-[62ch] text-sm text-ash">
+            Four builds, written for engineers. Client names are withheld;
+            everything else is exactly what happened.
+          </p>
 
-          <ul className="mt-8 divide-y divide-rule/70 border-y border-rule/70">
-            {work.map((project) => (
-              <li key={project.slug}>
-                <Link
-                  href={`/work/${project.slug}/`}
-                  className="group block py-8 sm:py-9"
-                >
-                  <div className="flex flex-wrap items-baseline gap-x-4 gap-y-1">
-                    <h3 className="text-xl font-semibold tracking-tight text-bone group-hover:text-brass">
+          <ul className="mt-10 divide-y divide-rule border-y border-rule">
+            {work.map((project, i) => (
+              <li key={project.slug} className="row px-4 py-8 sm:px-5 sm:py-9">
+                <div className="flex flex-wrap items-baseline gap-x-4 gap-y-1">
+                  <h3 className="row__title text-xl font-semibold tracking-tight">
+                    {/* The link wraps the TITLE only. Wrapping the whole card
+                        gave screen readers a single 50-word link name. */}
+                    <Link
+                      href={`/work/${project.slug}/`}
+                      className="after:absolute after:inset-0 after:content-['']"
+                    >
                       {project.title}
-                    </h3>
-                    <span className="font-mono text-xs text-ash">
-                      {project.period}
+                    </Link>
+                  </h3>
+                  {i === 0 && (
+                    <span className="rounded-full border border-brass/40 bg-brass/10 px-2.5 py-0.5 font-mono text-2xs text-brass">
+                      Flagship
                     </span>
-                  </div>
+                  )}
+                  <ArrowUpRight className="row__arrow ml-auto text-ash" />
+                </div>
 
-                  <p className="mt-1.5 font-mono text-xs text-brass/80">
-                    {project.client}
-                  </p>
+                <p className="mt-2 font-mono text-xs text-ash">
+                  {project.client} · {project.period}
+                </p>
 
-                  <p className="mt-3 max-w-2xl text-ash">{project.outcome}</p>
+                <p className="mt-3 max-w-[68ch] text-ash">{project.outcome}</p>
 
-                  <div className="mt-4 flex flex-wrap items-center gap-x-3 gap-y-2">
-                    {project.stack.slice(0, 5).map((tech) => (
-                      <span
-                        key={tech}
-                        className="font-mono text-2xs text-ash/80"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-
-                  <p className="mt-4 font-mono text-xs text-ash group-hover:text-brass">
-                    Read the case study →
-                  </p>
-                </Link>
+                <p className="mt-4 flex flex-wrap gap-x-3 gap-y-1.5 font-mono text-2xs text-ash/85">
+                  {project.stack.slice(0, 5).map((tech) => (
+                    <span key={tech}>{tech}</span>
+                  ))}
+                </p>
               </li>
             ))}
           </ul>
         </div>
       </Reveal>
 
-      {/* ---------------- Capabilities ---------------- */}
-      <Reveal as="section" className="mx-auto max-w-5xl px-6 pt-20">
-        <h2 className="font-mono text-2xs uppercase tracking-[0.2em] text-ash">
-          What I work on
-        </h2>
+      {/* --------------------------- Capabilities -------------------------- */}
+      <Reveal className="mx-auto max-w-5xl px-6 pt-20">
+        <div id="capabilities" className="scroll-mt-24">
+          <h2 className="text-2xl font-bold tracking-tight">What I work on</h2>
 
-        <dl className="mt-8 space-y-7">
-          {skills.map((group) => (
-            <div
-              key={group.title}
-              className="grid gap-2 border-t border-rule/70 pt-5 sm:grid-cols-[11rem_1fr] sm:gap-6"
-            >
-              <dt className="font-semibold tracking-tight text-bone">
-                {group.title}
-              </dt>
-              <dd className="text-ash">
-                {group.items.join(" · ")}
-              </dd>
-            </div>
-          ))}
-        </dl>
+          <dl className="mt-8">
+            {skills.map((group) => (
+              <div
+                key={group.title}
+                className="grid gap-2 border-t border-rule py-5 sm:grid-cols-[12rem_1fr] sm:gap-6"
+              >
+                <dt className="font-semibold tracking-tight text-bone">
+                  {group.title}
+                </dt>
+                <dd className="flex flex-wrap gap-2">
+                  {group.items.map((item) => (
+                    <span
+                      key={item}
+                      className="chip rounded-full px-3 py-1 text-xs text-ash"
+                    >
+                      {item}
+                    </span>
+                  ))}
+                </dd>
+              </div>
+            ))}
+          </dl>
+        </div>
       </Reveal>
 
-      {/* ---------------- About + contact ---------------- */}
-      <Reveal as="section" className="mx-auto max-w-5xl px-6 pt-20">
-        <h2 className="font-mono text-2xs uppercase tracking-[0.2em] text-ash">
-          About
-        </h2>
-
-        <div className="mt-8 max-w-2xl space-y-5">
+      {/* ------------------------------ About ------------------------------ */}
+      <Reveal className="mx-auto max-w-5xl px-6 pt-20">
+        <h2 className="text-2xl font-bold tracking-tight">About</h2>
+        <div className="mt-6 max-w-[68ch] space-y-5">
           {about.slice(0, 2).map((para) => (
             <p key={para.slice(0, 24)} className="text-ash">
               {para}
             </p>
           ))}
         </div>
-
         <p className="mt-6">
-          <Link
-            href="/about/"
-            className="text-sm text-brass underline-offset-4 hover:underline"
-          >
-            More about how I work →
+          <Link href="/about/" className="sweep text-sm font-medium text-brass">
+            More about how I work
           </Link>
         </p>
+      </Reveal>
 
-        <div className="mt-12 border-t border-rule/70 pt-8">
-          <p className="max-w-2xl text-lg text-bone">
-            I am open to Salesforce developer roles — in Noida, elsewhere in
-            India, or remote. The quickest way to reach me is email.
+      {/* ----------------------------- Contact ----------------------------- */}
+      <Reveal className="mx-auto max-w-5xl px-6 pt-20">
+        <div className="card rounded-2xl px-8 py-12 sm:px-12 sm:py-14">
+          <h2 className="max-w-[22ch] text-2xl font-bold tracking-tight sm:text-3xl">
+            Looking for a Salesforce developer who owns what he ships?
+          </h2>
+          <p className="mt-4 max-w-[58ch] text-ash">
+            I&apos;m open to roles in Noida, elsewhere in India, or remote —
+            30-day notice. Email is the fastest way to reach me, and I reply to
+            everything.
           </p>
-          <p className="mt-5 flex flex-wrap gap-x-6 gap-y-2">
+          <div className="mt-8 flex flex-wrap items-center gap-3">
             <a
               href={`mailto:${site.email}`}
-              className="text-brass underline-offset-4 hover:underline"
+              className="btn-primary inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold"
             >
               {site.email}
+              <ArrowUpRight />
             </a>
             <a
               href={site.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-ash underline-offset-4 hover:text-bone hover:underline"
+              className="btn-ghost inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold text-bone"
             >
-              LinkedIn
+              Message on LinkedIn
             </a>
-          </p>
+          </div>
         </div>
       </Reveal>
     </>

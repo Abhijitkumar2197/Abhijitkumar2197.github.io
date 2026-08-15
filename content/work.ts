@@ -29,11 +29,14 @@ export type CaseStudy = {
   sections: Section[];
   timeline?: TimelineStep[];
   description: string;
+  /** ISO date, required by schema.org Article for rich results. */
+  datePublished: string;
 };
 
 export const work: CaseStudy[] = [
   {
     slug: "multi-country-salesforce-expansion",
+    datePublished: "2025-03-01",
     title: "Onboarding a 7th country into a live multi-country org",
     client: "Global food safety and testing company",
     period: "July 2024 – February 2025",
@@ -92,11 +95,11 @@ export const work: CaseStudy[] = [
           },
           {
             label: "Knowledge, reports and dashboards",
-            text: "A localised Knowledge base for the community, plus the reporting layer the new region needed on day one.",
+            text: "A localized Knowledge base for the community, plus the reporting layer the new region needed on day one.",
           },
           {
             label: "The shared sample process",
-            text: "Extended the global process to accept the new country as a valid path, keeping every existing country's behaviour byte-for-byte identical.",
+            text: "Extended the global process to accept the new country as a valid path, keeping every existing country's behavior byte-for-byte identical.",
           },
         ],
       },
@@ -159,14 +162,15 @@ export const work: CaseStudy[] = [
 
   {
     slug: "patient-financial-estimates",
+    datePublished: "2025-06-01",
     title: "Lead intake and patient financial estimates on Health Cloud",
-    client: "US behavioural health provider",
+    client: "US behavioral health provider",
     period: "November 2024 – present",
     role: "Salesforce developer — requirements, solution design, build",
     outcome:
       "Cut inbound lead noise ~50%, and automated the up-front cost estimate patients receive at admission.",
     description:
-      "Two shipped systems for a US behavioural health provider: a call-tracking-to-Salesforce lead integration that cut noise by half, and an admission-time patient financial estimate engine built to route uncertainty to humans rather than guess.",
+      "Two shipped systems for a US behavioral health provider: a call-tracking-to-Salesforce lead integration that cut noise by half, and an admission-time patient financial estimate engine built to route uncertainty to humans rather than guess.",
     metrics: [
       { value: "~50%", label: "reduction in inbound lead noise" },
       { value: "~74", label: "benefit fields in the verification matrix" },
@@ -185,7 +189,7 @@ export const work: CaseStudy[] = [
       {
         heading: "Context",
         body: [
-          "A US behavioural health provider running on Health Cloud. I have owned requirement gathering, solution design and delivery through direct client conversation since November 2024. Two pieces are worth writing up.",
+          "A US behavioral health provider running on Health Cloud. I have owned requirement gathering, solution design and delivery through direct client conversation since November 2024. Two pieces are worth writing up.",
         ],
       },
       {
@@ -251,22 +255,23 @@ export const work: CaseStudy[] = [
         heading: "Outcome",
         body: [
           "Lead noise down roughly 50% with reps notified in real time, and the admission-time estimate produced consistently from live benefit data with an explicit audit trail behind every discount.",
-          "Alongside these, I build the wider behavioural health workflows with Apex, Flow and async processing (Queueable and Batch) for the calculation-heavy paths.",
+          "Alongside these, I build the wider behavioral health workflows with Apex, Flow and async processing (Queueable and Batch) for the calculation-heavy paths.",
         ],
       },
     ],
   },
 
   {
-    slug: "prior-authorisation-automation",
-    title: "Prior-authorisation automation — LLM and RAG inside Health Cloud",
-    client: "Behavioural health · selected for the firm's flagship product",
-    period: "Personal project → productisation",
+    slug: "prior-authorization-automation",
+    datePublished: "2026-02-01",
+    title: "Prior-authorization automation — LLM and RAG inside Health Cloud",
+    client: "Behavioral health · selected for the firm's flagship product",
+    period: "Personal project → productization",
     role: "Originator — problem framing, architecture, build",
     outcome:
       "Started as a personal project, pitched to leadership, and selected for integration into the company's flagship product.",
     description:
-      "A prior-authorisation tool that was rebuilt from a letter-drafting assistant into a denial-prevention engine after a manager corrected the problem statement — with deterministic form filling and propose-and-confirm as hard design rules.",
+      "A prior-authorization tool that was rebuilt from a letter-drafting assistant into a denial-prevention engine after a manager corrected the problem statement — with deterministic form filling and propose-and-confirm as hard design rules.",
     metrics: [
       { value: "v1 → v2", label: "rebuilt after the problem was reframed" },
       { value: "0", label: "model-generated values written into payer forms" },
@@ -285,14 +290,14 @@ export const work: CaseStudy[] = [
       {
         heading: "Context",
         body: [
-          "Prior authorisation is the paperwork gate in front of treatment. A coordinator assembles clinical evidence into a packet, sends it to a payer, and waits. When it comes back denied, the work is redone and the patient waits longer.",
+          "Prior authorization is the paperwork gate in front of treatment. A coordinator assembles clinical evidence into a packet, sends it to a payer, and waits. When it comes back denied, the work is redone and the patient waits longer.",
           "I started building against this problem on my own time, then pitched it internally. It was selected for integration into the company's flagship product.",
         ],
       },
       {
         heading: "Problem — and the correction that mattered",
         body: [
-          "Version one was aimed at drafting authorisation letters. Generating good clinical prose is the part of this problem that an LLM makes look easy, so that is where I started.",
+          "Version one was aimed at drafting authorization letters. Generating good clinical prose is the part of this problem that an LLM makes look easy, so that is where I started.",
           "A manager who actually knew the workflow corrected it: coordinators do not need better letters. They need to not get denied. Denials come from packets that are incomplete against the payer's criteria — a missing assessment, an unmet criterion, an evidence gap — not from prose that could have been more persuasive.",
           "That reframing threw away the premise of v1. The tool was rebuilt as a completeness and denial-prevention engine: work out what this payer requires for this request, check the packet against it, and surface what is missing before anything is submitted.",
         ],
@@ -346,7 +351,7 @@ export const work: CaseStudy[] = [
       {
         heading: "Outcome",
         body: [
-          "Selected by leadership for productisation into the company's flagship product.",
+          "Selected by leadership for productization into the company's flagship product.",
           "The more useful outcome was the judgement: the version that got picked up is the one built after someone who knew the work told me the problem was wrong. Deterministic filling, propose-and-confirm and mandatory shadowing all came out of taking that correction seriously.",
         ],
       },
@@ -355,6 +360,7 @@ export const work: CaseStudy[] = [
 
   {
     slug: "multi-source-orchestration-agent",
+    datePublished: "2026-05-01",
     title: "Multi-source orchestration agent for support triage",
     client: "Internal tool",
     period: "Ongoing",
@@ -384,7 +390,7 @@ export const work: CaseStudy[] = [
       {
         heading: "What I built",
         body: [
-          "A single orchestrator LLM coordinating all three live sources. It tracks new and updated tickets, reads and prioritises incoming mail, and flags whether a new case is routine or genuinely new.",
+          "A single orchestrator LLM coordinating all three live sources. It tracks new and updated tickets, reads and prioritizes incoming mail, and flags whether a new case is routine or genuinely new.",
           "The output is one priority-ranked dashboard, with a suggested reply and a short tip attached to each item.",
         ],
       },

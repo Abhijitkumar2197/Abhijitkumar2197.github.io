@@ -3,6 +3,7 @@ import { IBM_Plex_Sans, IBM_Plex_Mono } from "next/font/google";
 import { site, meta } from "@/content/site";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
+import { Chrome } from "@/components/Chrome";
 import "./globals.css";
 
 const plexSans = IBM_Plex_Sans({
@@ -58,21 +59,27 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={`${plexSans.variable} ${plexMono.variable}`}>
-      <head>
-        {/* Set before paint so the scroll reveal never runs without JS. */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `document.documentElement.classList.add('js')`,
-          }}
-        />
-      </head>
       <body className="min-h-screen antialiased">
         <a href="#main" className="skip">
           Skip to content
         </a>
+
+        {/* Ambient background: slow warm/cool pools, masked hairline grid,
+            film grain. Decorative only. */}
+        <div className="scene" aria-hidden="true">
+          <span className="scene__pool scene__pool--a" />
+          <span className="scene__pool scene__pool--b" />
+          <span className="scene__pool scene__pool--c" />
+          <span className="scene__grid" />
+          <span className="scene__grain" />
+        </div>
+
+        <div className="progress" aria-hidden="true" />
+
         <SiteHeader />
         <main id="main">{children}</main>
         <SiteFooter />
+        <Chrome />
       </body>
     </html>
   );
