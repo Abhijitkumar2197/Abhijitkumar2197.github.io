@@ -59,7 +59,13 @@
   }
 
   body {
-    background-color: var(--color-ink);
+    /* Deliberately NO background-color.
+       html already paints the page ground. If body also sets one, body's
+       background stops being propagated to the viewport and paints as an
+       ordinary element background — which renders *over* every negative
+       z-index child, hiding the entire .scene layer (pools, grid, grain and
+       the constellation canvas). Leave this transparent. */
+    background-color: transparent;
     color: var(--color-bone);
     font-family: var(--font-sans);
     font-size: var(--text-base);
