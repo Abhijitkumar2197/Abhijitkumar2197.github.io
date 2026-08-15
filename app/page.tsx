@@ -1,6 +1,13 @@
 import Link from "next/link";
 import { site, meta } from "@/content/site";
-import { proof, skills, about } from "@/content/profile";
+import {
+  proof,
+  skills,
+  about,
+  regions,
+  howIWork,
+  services,
+} from "@/content/profile";
 import { work } from "@/content/work";
 import { Reveal } from "@/components/Reveal";
 
@@ -43,7 +50,7 @@ const personSchema = {
     "LLM",
     "RAG",
   ],
-  sameAs: [site.linkedin, site.github],
+  sameAs: [site.linkedin, site.github, site.leetcode],
 };
 
 const ArrowUpRight = ({ className = "" }: { className?: string }) => (
@@ -93,9 +100,10 @@ export default function HomePage() {
 
         <p className="rise rise-4 mt-5 max-w-[62ch] text-ash">
           Two years at {site.employer.name}, a Salesforce consulting and ISV
-          firm in Noida. I build with Apex, LWC, Flow and REST integrations,
-          own the releases that put them live, and build AI agents into the
-          same CRM workflows.
+          firm in Noida, delivering for client teams across{" "}
+          <span className="text-bone">Europe, the US, Brazil and India</span>. I
+          gather the requirements, design and build it in Apex, LWC and Flow,
+          run the release, and then support it in production.
         </p>
 
         <div className="rise rise-5 mt-9 flex flex-wrap items-center gap-3">
@@ -131,6 +139,22 @@ export default function HomePage() {
             className="sweep hover:text-bone"
           >
             LinkedIn
+          </a>
+          <a
+            href={site.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="sweep hover:text-bone"
+          >
+            GitHub
+          </a>
+          <a
+            href={site.leetcode}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="sweep hover:text-bone"
+          >
+            LeetCode
           </a>
           <span>Noida, India · open to relocation and remote</span>
         </p>
@@ -229,6 +253,58 @@ export default function HomePage() {
             ))}
           </ul>
         </div>
+      </Reveal>
+
+      {/* ----------------------- Regions + engagement ---------------------- */}
+      <Reveal className="mx-auto max-w-5xl px-6 pt-20">
+        <div className="card rounded-2xl px-7 py-9 sm:px-10 sm:py-11">
+          <h2 className="max-w-[30ch] text-2xl font-bold tracking-tight">
+            {regions.headline}
+          </h2>
+          <ul className="mt-6 flex flex-wrap gap-2">
+            {regions.list.map((r) => (
+              <li
+                key={r}
+                className="chip rounded-full px-3.5 py-1.5 font-mono text-xs text-ash"
+              >
+                {r}
+              </li>
+            ))}
+          </ul>
+          <p className="mt-6 max-w-[64ch] text-ash">{regions.note}</p>
+
+          <div className="mt-9 grid gap-x-8 gap-y-6 border-t border-rule pt-8 sm:grid-cols-2">
+            {services.map((s) => (
+              <div key={s.title}>
+                <h3 className="font-semibold tracking-tight text-bone">
+                  {s.title}
+                </h3>
+                <p className="mt-1.5 max-w-[46ch] text-sm text-ash">{s.text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </Reveal>
+
+      {/* ----------------------------- How I work -------------------------- */}
+      <Reveal className="mx-auto max-w-5xl px-6 pt-20">
+        <h2 className="text-2xl font-bold tracking-tight">How I work</h2>
+        <p className="mt-2 max-w-[62ch] text-sm text-ash">
+          I take features end to end rather than picking up specs — and I stay
+          on them after go-live.
+        </p>
+
+        <ol className="mt-10 grid gap-x-8 gap-y-9 sm:grid-cols-2 lg:grid-cols-3">
+          {howIWork.map((phase) => (
+            <li key={phase.step} className="border-t border-rule pt-5">
+              <span className="font-mono text-xs text-brass">{phase.step}</span>
+              <h3 className="mt-2 text-lg font-semibold tracking-tight">
+                {phase.title}
+              </h3>
+              <p className="mt-2 max-w-[42ch] text-sm text-ash">{phase.text}</p>
+            </li>
+          ))}
+        </ol>
       </Reveal>
 
       {/* --------------------------- Capabilities -------------------------- */}

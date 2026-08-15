@@ -25,6 +25,7 @@ export const site = {
   email: "kumarabhijit2197@gmail.com",
   linkedin: "https://www.linkedin.com/in/abhijit-kumar-/",
   github: "https://github.com/Abhijitkumar2197",
+  leetcode: "https://leetcode.com/u/abhimikasa/",
 
   /** Real file in /public. Filename is what the recruiter sees on download. */
   resume: "/Abhijit-Kumar-Salesforce-Developer.pdf",

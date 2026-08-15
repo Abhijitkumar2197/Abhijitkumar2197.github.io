@@ -200,6 +200,18 @@
   }
 }
 
+/* Constellation canvas — lives in the upper band and fades out, so it frames
+   the hero without following the reader down 4,000px of prose. */
+.backdrop__canvas {
+  position: absolute;
+  inset: 0 0 auto 0;
+  width: 100%;
+  height: min(115vh, 1100px);
+  display: block;
+  mask-image: linear-gradient(to bottom, #000 55%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, #000 55%, transparent 100%);
+}
+
 /* Hairline grid, masked to a soft pool so it never reads as graph paper. */
 .scene__grid {
   position: absolute;

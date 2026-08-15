@@ -4,6 +4,7 @@ import { site, meta } from "@/content/site";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { Chrome } from "@/components/Chrome";
+import { Backdrop } from "@/components/Backdrop";
 import "./globals.css";
 
 const plexSans = IBM_Plex_Sans({
@@ -71,6 +72,7 @@ export default function RootLayout({
           <span className="scene__pool scene__pool--b" />
           <span className="scene__pool scene__pool--c" />
           <span className="scene__grid" />
+          <Backdrop />
           <span className="scene__grain" />
         </div>
 

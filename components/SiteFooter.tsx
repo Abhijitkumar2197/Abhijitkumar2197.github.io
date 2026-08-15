@@ -47,6 +47,16 @@ export function SiteFooter() {
               </li>
               <li>
                 <a
+                  href={site.leetcode}
+                  className="text-bone hover:text-brass underline-offset-4 hover:underline"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  LeetCode — abhimikasa
+                </a>
+              </li>
+              <li>
+                <a
                   href={site.resume}
                   className="text-bone hover:text-brass underline-offset-4 hover:underline"
                   download
