@@ -1,0 +1,141 @@
+@import "tailwindcss";
+
+/* ============================================================================
+   DESIGN TOKENS — decisions, and why
+
+   PALETTE (6 values, one accent)
+   Deliberately avoiding the two current AI-portfolio defaults: violet/indigo
+   gradients on near-black, and cream + serif + terracotta editorial. Instead a
+   cool "instrument panel" ground with a single warm accent — legible for long
+   reading, low glare on large dark surfaces, and enterprise-adjacent without
+   copying Salesforce blue.
+
+     --color-ink    #0D1214  page ground; charcoal shifted slightly cyan, not pure black
+     --color-slate  #151C1F  raised surfaces (cards, code, tables)
+     --color-rule   #232E32  hairlines and borders
+     --color-bone   #E9E6DF  body text; warm off-white, never #FFF (glare)
+     --color-ash    #94A1A6  secondary text; passes AA on ink
+     --color-brass  #D99A4E  the single accent — links, metrics, markers
+
+   Accent discipline: brass appears on numerals, links and one rule per section.
+   Nothing else is coloured.
+
+   TYPE (two faces, one superfamily)
+   IBM Plex Sans for everything read as language, IBM Plex Mono for everything
+   read as data — metrics, timestamps, labels, stack lists. Plex is an
+   engineering face with real character (flared terminals, distinctive g) and it
+   is not Inter, which every generated portfolio ships with. The mono/sans split
+   is also the signature element: project metrics are typeset as data, not decor.
+
+   Both loaded via next/font (self-hosted, swap) so no render-blocking request.
+   ========================================================================== */
+
+@theme {
+  --color-ink: #0d1214;
+  --color-slate: #151c1f;
+  --color-rule: #232e32;
+  --color-bone: #e9e6df;
+  --color-ash: #94a1a6;
+  --color-brass: #d99a4e;
+
+  --font-sans: var(--font-plex-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-plex-mono), ui-monospace, "SF Mono", monospace;
+
+  /* Type scale — 1.25 ratio off a 17px body, rounded to sane rems */
+  --text-2xs: 0.75rem;
+  --text-xs: 0.78125rem;
+  --text-sm: 0.875rem;
+  --text-base: 1.0625rem;
+  --text-lg: 1.1875rem;
+  --text-xl: 1.375rem;
+  --text-2xl: 1.75rem;
+  --text-3xl: 2.25rem;
+  --text-4xl: 3rem;
+  --text-5xl: 3.75rem;
+}
+
+/* ---------- base ---------- */
+
+html {
+  background-color: var(--color-ink);
+  color-scheme: dark;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background-color: var(--color-ink);
+  color: var(--color-bone);
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--color-brass);
+  color: var(--color-ink);
+}
+
+/* Visible keyboard focus everywhere, never removed. */
+:focus-visible {
+  outline: 2px solid var(--color-brass);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+a {
+  color: inherit;
+}
+
+/* Tabular figures wherever numbers are compared vertically. */
+.tnum {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Skip link — visible only when focused. */
+.skip {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 100;
+}
+.skip:focus {
+  left: 1rem;
+  top: 1rem;
+  padding: 0.65rem 1rem;
+  background: var(--color-brass);
+  color: var(--color-ink);
+  font-weight: 600;
+}
+
+/* ---------- motion ----------
+   One scroll reveal, and it only exists when JS is on (the `js` class is set
+   before paint). With JS disabled the content is simply visible — no flash,
+   nothing hidden. Reduced motion turns it off entirely. */
+
+.js .reveal {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.js .reveal.is-in {
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .js .reveal,
+  .js .reveal.is-in {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  * {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
