@@ -54,38 +54,43 @@
   --text-5xl: 3.75rem;
 }
 
-/* ---------- base ---------- */
+/* ---------- base ----------
+   These MUST live in @layer base. Unlayered rules beat everything in
+   @layer utilities regardless of specificity, so an unlayered `a { color:
+   inherit }` would silently override every text-* colour utility on links. */
 
-html {
-  background-color: var(--color-ink);
-  color-scheme: dark;
-  -webkit-text-size-adjust: 100%;
-}
+@layer base {
+  html {
+    background-color: var(--color-ink);
+    color-scheme: dark;
+    -webkit-text-size-adjust: 100%;
+  }
 
-body {
-  background-color: var(--color-ink);
-  color: var(--color-bone);
-  font-family: var(--font-sans);
-  font-size: var(--text-base);
-  line-height: 1.65;
-  -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
-}
+  body {
+    background-color: var(--color-ink);
+    color: var(--color-bone);
+    font-family: var(--font-sans);
+    font-size: var(--text-base);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
 
-::selection {
-  background: var(--color-brass);
-  color: var(--color-ink);
-}
+  ::selection {
+    background: var(--color-brass);
+    color: var(--color-ink);
+  }
 
-/* Visible keyboard focus everywhere, never removed. */
-:focus-visible {
-  outline: 2px solid var(--color-brass);
-  outline-offset: 3px;
-  border-radius: 2px;
-}
+  /* Visible keyboard focus everywhere, never removed. */
+  :focus-visible {
+    outline: 2px solid var(--color-brass);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
 
-a {
-  color: inherit;
+  a {
+    color: inherit;
+  }
 }
 
 /* Tabular figures wherever numbers are compared vertically. */
