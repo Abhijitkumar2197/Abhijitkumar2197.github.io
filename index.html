@@ -9,11 +9,17 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%231a1917'/><text x='16' y='22' text-anchor='middle' font-family='Georgia' font-style='italic' font-size='17' fill='%23ff6d3f'>ak</text></svg>" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%23151b25'/><text x='16' y='22' text-anchor='middle' font-family='Georgia' font-style='italic' font-size='17' fill='%237c8cf8'>ak</text></svg>" />
 </head>
 <body>
 
   <div class="progress-bar" id="progressBar" aria-hidden="true"></div>
+
+  <!-- minimal animated background: soft glow + slowly panning grid -->
+  <div class="bg-scene" aria-hidden="true">
+    <div class="bg-glow"></div>
+    <div class="bg-grid"></div>
+  </div>
 
   <!-- ===== NAV ===== -->
   <header class="nav-wrap">
@@ -91,8 +97,8 @@
         <div class="photo-wrap" id="photoTilt">
           <div class="photo-backplate"></div>
           <div class="photo-frame">
-            <img src="assets/profile-mono.jpg" alt="Abhijit Kumar" class="photo-base" width="760" height="760" />
-            <img src="assets/profile-color.jpg" alt="" aria-hidden="true" class="photo-hover" width="760" height="760" />
+            <img src="assets/profile-color.jpg" alt="Abhijit Kumar" class="photo-base" width="760" height="760" />
+            <img src="assets/profile-duo.jpg" alt="" aria-hidden="true" class="photo-hover" width="760" height="760" />
           </div>
           <div class="photo-badge">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>
