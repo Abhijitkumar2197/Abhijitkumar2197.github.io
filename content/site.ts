@@ -50,5 +50,5 @@ export const meta = {
   homeTitle:
     "Abhijit Kumar — Salesforce Developer | Apex, LWC, Integrations, AI Automation",
   homeDescription:
-    "Salesforce developer in Noida, India with 2+ years building and owning production systems for global enterprise orgs — Apex, LWC, Flow, Health Cloud, REST integrations, release management, and applied AI in CRM workflows.",
+    "Salesforce developer in Noida, India with 2years 6months building and owning production systems for global enterprise orgs — Apex, LWC, Flow, Health Cloud, REST integrations, release management, and applied AI in CRM workflows.",
 } as const;
