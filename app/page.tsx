@@ -82,7 +82,7 @@ export default function HomePage() {
       <section className="mx-auto max-w-5xl px-6 pt-16 pb-14 sm:pt-24 sm:pb-20">
         <p className="rise rise-1 flex items-center gap-2.5 font-mono text-xs text-ash">
           <span className="inline-block h-1.5 w-1.5 rounded-full bg-emerald-400" />
-          Open to Salesforce roles · 30-day notice
+          Open to Salesforce roles
         </p>
 
         {/* His name is the brand: it leads, at size. Previously it rendered at
